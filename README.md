@@ -1,28 +1,14 @@
-# FiRE: Open-Source-Friendly Cleanup
+# FiRE: enhancing mllms with fine-grained context learning for complex image retrieval
 
-An open-source-friendly cleanup of the FiRE codebase derived from the private scripts you provided.
+Oral @ SIGIR'25
 
-This repository is intended to make the project easier to release, reproduce, and maintain. It focuses on three practical goals:
-- removing hard-coded local paths,
-- moving hyperparameters into explicit configs,
-- keeping the default evaluation pipeline fair and easy to understand.
-
-> This is **not** a byte-for-byte mirror of the original private project. It is a cleaned, public-facing reorganization designed for reproducibility.
-
----
-
-## Highlights
-
-- **No hard-coded absolute paths**
-- **YAML-based configuration for major hyperparameters**
-- **Separated training and evaluation entry points**
-- **Default evaluation keeps only a fair public protocol**
-- **Repository structure suitable for GitHub release**
-
----
-
-## Repository Layout
-
+Bohan Hou ,
+Haoqiang Lin ,
+Xuemeng Song ,
+Haokun Wen ,
+Meng Liu ,
+Yupeng Hu ,
+Xiangyu Zhao 
 ```text
 fire_opensource_clean/
 ├── README.md
@@ -45,53 +31,7 @@ fire_opensource_clean/
     └── trainer.py
 ```
 
----
 
-## What Was Cleaned Up
-
-### 1. Local paths were removed
-The original scripts relied on machine-specific paths such as `/home/...` and private storage layouts. In this version, all dataset and output locations are controlled through YAML config files.
-
-Example:
-
-```yaml
-data:
-  image_root: ./data/images
-  train_metadata: ./data/annotations/fire_train.jsonl
-```
-
-### 2. Hyperparameters were made explicit
-Key training and evaluation settings are now exposed in `configs/*.yaml`, including:
-- LoRA settings (`r`, `alpha`, `dropout`)
-- learning rate
-- batch size
-- number of epochs
-- warmup steps
-- loss-related weights
-- decoding / max-length settings used by the wrapper
-
-### 3. Training and evaluation were separated
-Instead of mixing multiple internal workflows in a single script, this version provides two explicit entry points:
-- `scripts/train.py`
-- `scripts/eval.py`
-
-This makes it easier for external users to see how the project is supposed to be run.
-
-### 4. Default evaluation was restricted to a fair public protocol
-The original codebase appears to contain branches and dependencies that are not ideal as the default public benchmark path, such as:
-- private intermediate JSON files,
-- private auxiliary captions or annotations,
-- local precomputed vision-token caches,
-- internal modes whose meaning is unclear from the outside.
-
-In this cleaned release, the default evaluation assumes only:
-- **query** = reference image + text modification
-- **gallery** = candidate image pool
-- **metric** = Recall@K
-
-That choice is intentional. It reduces ambiguity and avoids accidentally introducing extra test-time information.
-
----
 
 ## Installation
 
@@ -275,10 +215,6 @@ By design, the default evaluation path does **not** consume extra target-side te
 
 ## Supported Evaluation Tasks
 
-This cleaned version includes readers for:
-- `custom_jsonl`
-- `fashioniq`
-- `cirr`
 
 ### FashionIQ example
 
@@ -299,52 +235,4 @@ data:
   split: val
 ```
 
----
 
-## Fairness Policy for Public Evaluation
-
-The following are intentionally **not** enabled as the default public evaluation path:
-
-1. private checkpoint locations,
-2. private `hbh_*` annotation files,
-3. local `.pt` caches for precomputed vision tokens,
-4. internal modes such as `case`, `pre_vision`, or `classic` as the default benchmark entry,
-5. additional test-time text not available in the standard retrieval setup.
-
-This repository favors a conservative public protocol so that external users can reproduce results without reverse-engineering internal assumptions.
-
----
-
-## Known Limitations
-
-- This release prioritizes **public reproducibility** over strict fidelity to a private internal codebase.
-- Some logic from the original project appears tightly coupled to private intermediate files; here it has been replaced with explicit metadata files and explicit configuration.
-- Full end-to-end reproduction still depends on the user providing the correct datasets, model access, and runtime environment.
-
----
-
-## Recommended Files Before Public Release
-
-Before pushing the repository publicly, it would still be good to add:
-- `LICENSE`
-- dataset preparation scripts
-- benchmark download instructions
-- a results table for the public setting
-- checkpoint release notes
-- a citation block for the paper
-
----
-
-## Notes
-
-Additional cleanup rationale is documented in:
-
-```text
-docs/cleanup_notes.md
-```
-
-A Chinese version of this README is also included:
-
-```text
-README.zh-CN.md
-```

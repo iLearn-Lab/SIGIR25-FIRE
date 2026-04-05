@@ -1,0 +1,24 @@
+seed: 42
+model:
+  base_model: Salesforce/xgen-mm-phi3-mini-instruct-interleave-r-v1.5
+  adapter_path: ./outputs/fire_stage2
+
+data:
+  task: custom_jsonl   # custom_jsonl | fashioniq | cirr
+  image_root: ./data/images
+  query_metadata: ./data/annotations/eval_queries.jsonl
+  gallery_metadata: ./data/annotations/eval_gallery.jsonl
+  split: val
+  dress_type: dress
+  max_short_edge: 380
+  num_workers: 4
+
+prompts:
+  gallery: "Describe the image <image> ? <|end|> <|end|> <|end|> <|end|> <|end|>"
+  eval_query: "Given the reference image <image> but modify it with: {modification}. Describe the new image ? <|end|> <|end|> <|end|> <|end|> <|end|>"
+
+eval:
+  batch_size: 16
+  max_length: 512
+  ks: [1, 5, 10, 50]
+  exclude_reference: true

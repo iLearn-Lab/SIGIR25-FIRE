@@ -1,14 +1,37 @@
-# FiRE: enhancing mllms with fine-grained context learning for complex image retrieval
+# FiRE: Enhancing MLLMs with Fine-Grained Context Learning for Complex Image Retrieval
 
-Oral @ SIGIR'25
+> Official implementation of **FiRE**, a fine-grained context learning framework for complex image retrieval.
 
-Bohan Hou ,
-Haoqiang Lin ,
-Xuemeng Song ,
-Haokun Wen ,
-Meng Liu ,
-Yupeng Hu ,
-Xiangyu Zhao 
+**Oral @ SIGIR'25**
+
+## Authors
+
+**Bohan Hou**<sup>1</sup>, **Haoqiang Lin**<sup>1</sup>, **Xuemeng Song**<sup>1</sup>, **Haokun Wen**<sup>2,4</sup>, **Meng Liu**<sup>3</sup>, **Yupeng Hu**<sup>1</sup>, **Xiangyu Zhao**<sup>4</sup>\*
+
+<sup>1</sup> Shandong University  
+<sup>2</sup> Harbin Institute of Technology (Shenzhen)  
+<sup>3</sup> Shandong Jianzhu University  
+<sup>4</sup> City University of Hong Kong  
+\* Corresponding author
+
+## Links
+
+- **Paper**: [`ACM Digital Library`](https://doi.org/10.1145/3726302.3729979)
+- **Code Repository**: [`GitHub`](https://github.com/iLearn-Lab/fire_opensource_clean)
+
+> 如果后续有 project page、Hugging Face、demo 等链接，可以继续补在这里。
+
+---
+
+## Updates
+
+- [07/2025] Paper accepted at SIGIR 2025
+- [04/2026] Initial open-source release
+
+---
+
+
+
 ```text
 fire_opensource_clean/
 ├── README.md
@@ -235,4 +258,21 @@ data:
   split: val
 ```
 
+## Citation
 
+```bibtex
+@inproceedings{hou2025fire,
+  author    = {Bohan Hou and Haoqiang Lin and Xuemeng Song and Haokun Wen and Meng Liu and Yupeng Hu and Xiangyu Zhao},
+  title     = {FiRE: Enhancing MLLMs with Fine-Grained Context Learning for Complex Image Retrieval},
+  booktitle = {Proceedings of the International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages     = {803--812},
+  publisher = {ACM},
+  year      = {2025},
+  doi       = {10.1145/3726302.3729979}
+}
+```
+---
+
+## License
+
+This project is released under the Apache License 2.0.

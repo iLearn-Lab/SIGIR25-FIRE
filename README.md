@@ -19,8 +19,6 @@
 - **Paper**: [`ACM Digital Library`](https://doi.org/10.1145/3726302.3729979)
 - **Code Repository**: [`GitHub`](https://github.com/iLearn-Lab/fire_opensource_clean)
 
-> 如果后续有 project page、Hugging Face、demo 等链接，可以继续补在这里。
-
 ---
 
 ## Updates
